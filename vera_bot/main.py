@@ -58,12 +58,20 @@ def context(req: ContextRequest):
 
 @app.post("/v1/tick")
 def tick(req: TickRequest):
+    # 🔥 merge stored context if exists
+    merchant_ctx = store.get(("merchant", req.merchant.get("merchant_id")), {})
+    category_ctx = store.get(("category", req.category.get("slug")), {})
+
+    merged_merchant = {**merchant_ctx, **req.merchant}
+    merged_category = {**category_ctx, **req.category}
+
     result = compose(
-        req.category,
-        req.merchant,
+        merged_category,
+        merged_merchant,
         req.trigger,
         req.customer
     )
+
     return result
 
 
