@@ -42,7 +42,7 @@ Hash-comparison of all sent message bodies per conversation. If LLM produces a r
 
 ### Start the bot server
 ```bash
-export ANTHROPIC_API_KEY=sk-ant-...
+
 pip install flask requests
 python bot.py
 # Bot runs on http://localhost:8080
@@ -50,7 +50,7 @@ python bot.py
 
 ### Generate submission.jsonl
 ```bash
-export ANTHROPIC_API_KEY=sk-ant-...
+
 cd vera_bot/
 python generate_submission.py
 # Output: submission.jsonl (30 lines)
